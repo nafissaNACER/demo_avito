@@ -1,0 +1,14 @@
+*** Keywords ***
+My Test Set Up
+    [Arguments]     ${URL}      ${BROWSER}
+    Log    Start Test Set Up
+    Open Browser        ${URL}      ${BROWSER}
+    Maximize Browser Window
+
+My Test Tear Down
+    Log    Start Test Test Tear Down
+    Run Keyword If Test Failed    Capture Page Screenshot
+    Run Keyword And Ignore Error    Close All Browsers
+    Run Keyword If Test Passed    Close All Browsers
+
+

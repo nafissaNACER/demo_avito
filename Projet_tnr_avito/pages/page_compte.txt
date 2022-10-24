@@ -1,0 +1,31 @@
+*** Variables ***
+${Title}    tag:h2
+${NAME_fIELD}   id=name
+${PHONE_fIELD}    id=phone
+${checkbox}     xpath://input[@type='checkbox']
+${EMAIL_fIELD}     id=email
+${CONFIRMATION_EMAIL_fIELD}   id=emailConfirmation
+${PASSWORD_fIELD}     id=password
+${PASS_CONFIRMATION_fIELD}    id=passwordConfirmation
+${BUtton_CREER_COMPTE}      xpath://button[contains(text(),'Créer un compte')]
+${name}      nafissa
+${phone}      0655601584
+${email}    nacer.nafissa@gmail.com
+${password}    123@AZER
+${city_error}   xpath://label[@for='city']//following-sibling::div/span
+*** Keywords ***
+Exercice1
+    Wait Until Element Is Visible    ${Title}   5s
+    Input Text    ${NAME_fIELD}     ${name}
+    Input Text    ${PHONE_fIELD}    ${phone}
+    Click Element    ${checkbox}
+    Input Text    ${EMAIL_fIELD}    ${email}
+    Input Text    ${CONFIRMATION_EMAIL_fIELD}    ${email}
+    Input Text    ${PASSWORD_fIELD}    ${password}
+    Input Text    ${PASS_CONFIRMATION_fIELD}    ${password}
+    Click Element    ${BUtton_CREER_COMPTE}
+    Run Keyword And Continue On Failure    Element Text Should Be    ${city_error}    Veuillez Sélectionner une ville
+    Run Keyword And Continue On Failure    Checkbox Should Be Selected    ${checkbox}
+    ${actual_name}     Get Element Attribute     ${NAME_fIELD}      value
+    Run Keyword And Continue On Failure    Should Be Equal  ${actual_name}     ${name}
+    Close Browser

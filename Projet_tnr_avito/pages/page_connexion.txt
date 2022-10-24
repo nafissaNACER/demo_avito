@@ -1,0 +1,38 @@
+*** Variables ***
+${CHAMPS_EMAIL}     name:E-mail
+${CHAMPS_MOT_DE_PASSE}      name:Mot de passe
+${BUTTON_SECONNECTER}     xpath://button[contains(text(),'Se connecter')]
+${POPUP}    xpath://div[@role='dialog']
+${POPUP_CONTENT}    id:swal2-content
+${BUTTON_OK}      xpath://button[contains(text(),'OK')]
+${EXPECTED_MSG}       Addresse email ou mot de passe incorrect ! 
+${LINK_SINSCRIRE}   	partial link:inscrire gratuitement
+
+*** Keywords ***
+
+Entrez Email et Password
+    [Arguments]     ${EMAIL}    ${PASSWORD}
+    Wait Until Element Is Visible    ${CHAMPS_Email}    5s
+    Input Text    ${CHAMPS_EMAIL}       ${EMAIL}
+    Input Password    ${CHAMPS_MOT_DE_PASSE}    ${PASSWORD}
+
+Cliquer Se Connecter
+    Click Button    ${BUTTON_SECONNECTER}
+
+Verifier Presence Popup
+    Run Keyword And Continue On Failure    Element Should Be Visible    ${POPUP}
+
+Verifier Message
+    [Arguments]    ${message}
+    ${actual_msg}      Get Text    ${POPUP_CONTENT}
+    Run Keyword And Continue On Failure    Should Be Equal    ${actual_msg}    ${EXPECTED_MSG}
+
+Fermer Popup
+    Click Button    ${BUTTON_OK}
+
+Cliquer Sur Inscrire
+    Wait Until Element Is Visible    ${LINK_SINSCRIRE}
+    Click Element    ${LINK_SINSCRIRE}
+
+
+

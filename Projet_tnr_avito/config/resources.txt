@@ -1,0 +1,14 @@
+*** Settings ***
+Library     DateTime
+Library     Dialogs
+Library     String
+Library     Collections
+Library     Screenshot
+Library     OperatingSystem
+Library     Process
+Library     SeleniumLibrary
+Resource    set_up.txt
+Resource    ../pages/page_compte.txt
+Resource    ../pages/page_connexion.txt
+Resource    ../pages/page_home.txt
+

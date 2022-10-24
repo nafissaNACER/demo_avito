@@ -1,0 +1,23 @@
+*** Variables ***
+${CHAMPS_RECHERCHE}     name:keyword
+${BUTTON_RECHERCHER}    xpath://button[@aria-label='Rechercher']
+${BUTTON_SE_CONNECTER}      xpath://span[contains(text(),'Se connecter')]
+
+*** Keywords ***
+
+Recherhcer Sur Avito
+    [Arguments]     ${Filter}
+    Wait Until Element Is Visible    ${CHAMPS_RECHERCHE}
+    Click Element    ${CHAMPS_RECHERCHE}
+    Input Text    ${CHAMPS_RECHERCHE}    ${Filter}
+
+Cliquer Bouton Recherche
+    Wait Until Element Is Visible    ${BUTTON_RECHERCHER}       5s
+    Click Element    ${BUTTON_RECHERCHER}
+
+Cliquer Button Se Connecter
+    Wait Until Element Is Visible    ${BUTTON_SE_CONNECTER}     5S
+    Click Element    ${BUTTON_SE_CONNECTER}
+
+Un Ensemble Des Voitures Affichee
+        Log    test
